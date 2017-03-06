@@ -79,6 +79,11 @@ public class MatrizDispersa extends javax.swing.JFrame {
         jButton2.setText("Eliminar");
 
         jButton3.setText("Buscar Letra");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Buscar Dominio");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -168,6 +173,14 @@ public class MatrizDispersa extends javax.swing.JFrame {
         String res = consultar("buscarDominio",rb);
         JOptionPane.showMessageDialog(null, res);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        String letra = jTextField3.getText();
+        RequestBody rb = new FormEncodingBuilder().add("letra",letra).build();
+        String res = consultar("buscarLetra",rb);
+        JOptionPane.showMessageDialog(null, res);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
