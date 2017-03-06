@@ -26,7 +26,7 @@ public class MatrizDispersa extends javax.swing.JFrame {
     
     static OkHttpClient cliente = new OkHttpClient();
     
-    public static String agregar(String nom, RequestBody rq){
+    public static String consultar(String nom, RequestBody rq){
         String respues="no hay";
         try {
             URL uu = new URL("http://0.0.0.0:5000/"+nom);
@@ -81,6 +81,11 @@ public class MatrizDispersa extends javax.swing.JFrame {
         jButton3.setText("Buscar Letra");
 
         jButton4.setText("Buscar Dominio");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,10 +155,19 @@ public class MatrizDispersa extends javax.swing.JFrame {
         String partir[] = correo.split("@");
         String dominio = partir[1];
         RequestBody rb = new FormEncodingBuilder().add("dominio",dominio).add("letra",letra).add("correo",correo).build();
-        String res = agregar("agergarCorreo",rb);
+        String res = consultar("agergarCorreo",rb);
         System.out.println(res);
         JOptionPane.showMessageDialog(null, res);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        String dominio = jTextField4.getText();
+        dominio=dominio.replace("@","");
+        RequestBody rb = new FormEncodingBuilder().add("dominio",dominio).build();
+        String res = consultar("buscarDominio",rb);
+        JOptionPane.showMessageDialog(null, res);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
